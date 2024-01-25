@@ -46,6 +46,16 @@ function diceGameDadu() {
     div2.append(inputTotalDadu)
 }
 
+function createPlayerAndStartGame(totalPemain, totalDadu) {
+
+    if (!isNaN(totalPemain) && !isNaN(totalDadu) && totalPemain >= 2 && totalDadu >= 2) {
+        const players = Array.from({ length: totalPemain }, (_, index) => new Player(index + 1, totalDadu));
+        playGame(players);
+    } else {
+        alert("Total pemain dan total dadu harus lebih besar atau sama dengan 2");
+    }
+}
+
 class Player {
     constructor(id, total_dice) {
         this.id = id;
@@ -85,6 +95,8 @@ class Player {
         return this.dice.length > 0;
     }
 }
+
+
 
 function playGame(players) {
     let round = 1;
@@ -136,13 +148,5 @@ Rounde ${round} lempar dadu:\n`;
     document.getElementById("output").innerText = output;
 }
 
-function createPlayerAndStartGame(totalPemain, totalDadu) {
 
-    if (!isNaN(totalPemain) && !isNaN(totalDadu) && totalPemain >= 2 && totalDadu >= 2) {
-        const players = Array.from({ length: totalPemain }, (_, index) => new Player(index + 1, totalDadu));
-        playGame(players);
-    } else {
-        alert("Total pemain dan total dadu harus lebih besar atau sama dengan 2");
-    }
-}
 
